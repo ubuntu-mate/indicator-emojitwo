@@ -307,7 +307,7 @@ def item_response(self, w):
                     nextbiggest_candidate = recent[k]["recent_order"]
             nextbiggest = nextbiggest_candidate
         minindex = nextbiggest
-        for k in recent.keys():
+        for k in list(recent.keys()):
             if recent[k]["recent_order"] < minindex:
                 del recent[k]
 
