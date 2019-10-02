@@ -285,7 +285,7 @@ def item_response(self, w):
         GLib.idle_add(type_xdotool,output)
     else:
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-        GLib.idle_add(clipboard.set_text,output.decode('unicode-escape'), -1)
+        GLib.idle_add(clipboard.set_text,output.encode('utf-8').decode('unicode-escape'), -1)
 
     # Show notification
     if settings["notifications"]==True:
@@ -295,7 +295,7 @@ def item_response(self, w):
 
     # Remove item from recent if already present
     try:
-        for k in recent.keys():
+        for k in list(recent.keys()):
             if recent[k]["emoji_order"] == w["emoji_order"]:
                 del recent[k]
     except ValueError:
