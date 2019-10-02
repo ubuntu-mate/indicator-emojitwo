@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python3
 # -*- coding: UTF-8 -*-
 #
 
@@ -12,10 +12,6 @@ from os.path import expanduser
 import signal
 from collections import OrderedDict
 import re
-
-# Fix enconding in older Python versions
-reload(sys)
-sys.setdefaultencoding('utf8')
 
 # Import GTK
 from gi import require_version
@@ -316,7 +312,7 @@ def item_response(self, w):
         for k in recent.keys():
             if recent[k]["recent_order"] > biggestindex:
                 biggestindex = recent[k]["recent_order"]
-	nextbiggest = biggestindex
+        nextbiggest = biggestindex
         for i in range (1, settings["recent"]):
             nextbiggest_candidate = 0
             for k in recent.keys():
@@ -346,9 +342,6 @@ if __name__ == "__main__":
         sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
         sock.connect(sockname)
     except:
-
-        # Calling GObject.threads_init() is not needed for PyGObject 3.10.2+
-        GObject.threads_init()
 
         # Initialize notifications
         Notify.init("emojione-picker")
@@ -566,7 +559,7 @@ if __name__ == "__main__":
             sock.listen(1)
             GLib.io_add_watch(sock, GLib.IO_IN, handle_sock_signal)
         except:
-            print 'Could not listen to socket!'
+            print('Could not listen to socket!')
 
         # Run server
         signal.signal(signal.SIGINT, signal.SIG_DFL)
