@@ -8,7 +8,8 @@ Build-Depends: debhelper (>= 10),
 Maintainer: Martin Wimpress <code@flexion..org>
 
 Package: emojione-picker
-Depends: gir1.2-appindicator3-0.1,
+Depends: ${python3:Depends},
+         gir1.2-appindicator3-0.1,
          gir1.2-gtk-3.0,
          gir1.2-notify-0.7,
          gir1.2-rsvg-2.0,
