@@ -265,9 +265,9 @@ def item_response(self, w):
 
     # Copy character to clipboard or write it
     chars = w["unicode"].split("-")
-    output = ""
+    output = ''
     for char in chars:
-        output.append('\\U' + (char.zfill(8)))
+        output = output + '\\U' + (char.zfill(8))
 
     clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
     GLib.idle_add(clipboard.set_text,output.encode('utf-8').decode('unicode-escape'), -1)
