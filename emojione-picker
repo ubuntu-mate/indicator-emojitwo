@@ -2,16 +2,16 @@
 # -*- coding: UTF-8 -*-
 #
 
-import os
-import time
-import socket
-import setproctitle
-import sys
 import json
-from os.path import expanduser
-import signal
-from collections import OrderedDict
+import os
 import re
+import setproctitle
+import signal
+import socket
+import sys
+import time
+from collections import OrderedDict
+from os.path import expanduser
 
 # Import GTK
 from gi import require_version
