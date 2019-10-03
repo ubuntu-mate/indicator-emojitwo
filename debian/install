@@ -1,8 +1,0 @@
-assets/*.glade /usr/share/indicator-emojitwo/assets/
-assets/*.json /usr/share/indicator-emojitwo/assets/
-assets/categories/*.svg /usr/share/indicator-emojitwo/assets/categories/
-assets/icon-default* /usr/share/indicator-emojitwo/assets/
-assets/icon-mono*.png /usr/share/indicator-emojitwo/assets/
-assets/svg/*.svg /usr/share/indicator-emojitwo/assets/svg/
-indicator-emojitwo /usr/bin
-indicator-emojitwo.desktop /usr/share/applications
