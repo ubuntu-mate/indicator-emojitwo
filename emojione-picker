@@ -272,7 +272,8 @@ def item_response(self, w):
     GLib.idle_add(clipboard.set_text,output.encode('utf-8').decode('unicode-escape'), -1)
 
     # Show notification
-    if settings["notifications"]==True:
+    if settings["notifications"]:
+        Notify.init("emojione-picker")
         n = Notify.Notification.new(w["name"].title(), "Emoji is now in the clipboard. Paste it wherever you want!", directory + "/assets/svg/" + w["unicode"] + ".svg")
         n.show()
 
@@ -327,10 +328,6 @@ if __name__ == "__main__":
         sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
         sock.connect(sockname)
     except:
-
-        # Initialize notifications
-        Notify.init("emojione-picker")
-
         # Create the main menu
         menu = Gtk.Menu()
 
