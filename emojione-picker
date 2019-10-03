@@ -313,7 +313,7 @@ def item_response(self, w):
         json.dump(recent, outfile)
 
     # Refresh recent icons submenu
-    GLib.idle_add(refresh_recent_submenu)  
+    GLib.idle_add(refresh_recent_submenu)
 
 def get_emoji_group(code):
     for key in groups_data:
@@ -511,9 +511,9 @@ if __name__ == "__main__":
         search_item.connect("activate", open_search_window, "Search")
 
         # Create settings item
-        settings_item = Gtk.MenuItem(label="Settings...")
+        settings_item = Gtk.MenuItem(label="Settings…")
         GLib.idle_add(menu.append,settings_item)
-        GLib.idle_add(settings_item.show)    
+        GLib.idle_add(settings_item.show)
         settings_item.connect("activate", open_settings_window, "Settings")
         
         # Create another separator
