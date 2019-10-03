@@ -51,8 +51,8 @@ def handle_sock_signal(sock, *args):
     conn.close()
     open_search_window('','')
 
-def exit(self, w):
-    sys.exit()
+def terminate(self, w = None, data = None):
+    Gtk.main_quit()
 
 def open_settings_window(self, w):
     global settings
@@ -522,10 +522,10 @@ if __name__ == "__main__":
         GLib.idle_add(separator.show)
 
         # Create exit item
-        exit_item = Gtk.MenuItem(label="Exit")
+        exit_item = Gtk.MenuItem(label="Quit")
         GLib.idle_add(menu.append,exit_item)
         GLib.idle_add(exit_item.show)
-        exit_item.connect("activate", exit, "Exit")
+        exit_item.connect("activate", terminate)
 
         # Associate menu with indicator
         ind.set_menu(menu)
