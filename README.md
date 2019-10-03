@@ -1,64 +1,56 @@
-# EmojiTwo Picker
+<h1 align="center">
+  <img src=".github/logo.png" alt="Indicator EmojiTwo">
+  <br />
+  Indicator EmojiTwo
+</h1>
 
-EmojiTwo Indicator is a simple emoji picker for Linux desktop environments such as MATE, Unity, Budgie, and others.
+<p align="center"><b>A very simple emoji picker.</b></p>
 
-![Image of EmojiTwo](.github/screenshot.png)
+![Indicator EmojiTwo Screenshot](.github/screenshot.png?raw=true)
 
-This project is using emoji data from the [EmojiTwo](https://emojitwo.github.io/) project.
+<p align="center">Made with 💝 for <img src="https://raw.githubusercontent.com/anythingcodes/slack-emoji-for-techies/gh-pages/emoji/tux.png" align="top" width="24" /></p>
 
-## Installation
+## Introduction
 
-Installation is optional, but recommended to run the program at session startup easily.
+Indicator EmojiTwo is a simple emoji picker for Linux desktop environments
+and uses emoji data from the [EmojiTwo](https://emojitwo.github.io/) project.
+To use the picker, choose your emoji from the dropdown menu and paste it where
+you want using <kbd>Ctrl</kbd> + <kbd>v</kbd>. You can also search for emojis
+by keyword.
 
-### Method 1: Install Debian Package from PPA
+The project was forked from [emojione-picker-ubuntu](https://github.com/gentakojima/emojione-picker-ubuntu)
+by [Jorge Suárez de Lis](https://github.com/gentakojima) and migrated to
+Python 3.x.
 
-This method requires root access and is only available for Ubuntu 14.04, 15.10 and 16.04 at this moment.
+### Make it faster
 
-  1. Add [Official PPA](https://launchpad.net/~flexiondotorg/+archive/ubuntu/indicator-emojitwo): `sudo add-apt-repository ppa:flexiondotorg/indicator-emojitwo`
-  2. Reload package indexes: `sudo apt-get update`
-  3. Install package: `sudo apt install indicator-emojitwo`
+The indicator takes a few seconds to load, but it can take many seconds on
+older computers. In *Settings*, enable the option *Low end computer mode*
+to reduce the number of emojis and categories which should speed up loading
+time. Currently, this mode shows ~1000 emojis of the 1839 available.
 
-### Method 2: Build a Debian Package from source
+## Building, Testing, and Installation
 
-This method requires root access and was only tested on Ubuntu MATE 19.10 but should work on any Debian/Ubuntu operating system
+### Ubuntu
 
-  1. Install dependencies: `sudo apt-get install python3 gir1.2-notify-0.7 gir1.2-appindicator3-0.1 gir1.2-rsvg-2.0`
-  2. Clone the repository and cd into it: `git clone https://github.com/ubuntu-mate/indicator-emojito; cd indicator-emojitwo`
-  4. Build the package: `debuild` (*Signing the package might fail at this point, but it's not a big deal*)
-  5. Install it! `sudo dpkg -i ../emojione-picker*.deb`
+A [PPA for Indicator EmojiTwo](https://launchpad.net/~flexiondotorg/+archive/ubuntu/indicator-emojitwo) is published by [Martin Wimpress](https://github.com/flexiondotorg).
 
-## FAQ
-
-## How to use it
-
-To use the picker:
-
-  1. Choose your emoji from the dropdown menu.
-  2. Paste it (usually `Ctrl+V`) wherever you want!
-
-The **emoji search window** let you search emojis writing keywords. You can also assign a global hotkey to the command `emojione-picker` and the search window will open on your current mouse position at any time.
-
-
-### When I paste all/some icons, they are shown as ugly boxes. I want my money back!
-
-Recent GNU/Linux distributions (including Ubuntu 14.04, 15.10) won't display emojis properly out of the box.
-
-You can get full color emojis working on Firefox with black and white fallback for other applications following these instructions: https://github.com/eosrei/emojione-color-font
-
-### HOw do a make it faster?
-
-The indicator usually takes a few seconds to load, but it can take up to 30 seconds in older computers. In *Settings*, enable the option *Low end computer mode* to reduce the number of menu items (and emojis). That should speed up loading time. Currently, this mode shows about 1000 emojis out of 1800.
-
-### The search dialog is placed under the active window
-
-The **emoji search window** might be incorrectly placed under the current active window due to Unity/Compiz focus stealing prevention feature. This is not intended behaviour. The only known workaround is to disable this feature by running this command:
-
-```
-dconf write /org/compiz/profiles/unity/plugins/core/focus-prevention-level 0
+```bash
+sudo add-apt-repository ppa:flexiondotorg/indicator-emojitwo
+sudo apt update
+sudo apt install indicator-emojitwo
 ```
 
-If you want to enable the focus stealing prevention feature again, just run this command instead:
+### Source
 
-```
-dconf write /org/compiz/profiles/unity/plugins/core/focus-prevention-level 1
-```
+You'll need the following dependencies:
+
+  * `gir1.2-appindicator3-0.1`
+  * `gir1.2-gdkpixbuf-2.0`
+  * `gir1.2-glib-2.0`
+  * `gir1.2-gtk-3.0`
+  * `gir1.2-notify-0.7`
+  * `gir1.2-rsvg-2.0`
+  * `python3`
+  * `python3-gi`
+  * `python3-setproctitle`
