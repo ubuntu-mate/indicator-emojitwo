@@ -1,9 +1,8 @@
 [Desktop Entry]
-Name=Emojione Picker
-Comment=Emoji Picker for Ubuntu
-Icon=emojione-picker
-Exec=emojione-picker
+Name=EmojiTwo Picker
+Comment=EmojiTwo Picker Indicator
+Icon=indicator-emojitwo
+Exec=indicator-emojitwo
 Terminal=false
 Type=Application
 NoDisplay=false
-
