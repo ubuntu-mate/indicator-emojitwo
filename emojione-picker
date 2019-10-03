@@ -53,7 +53,7 @@ def handle_sock_signal(sock, *args):
     conn.close()
     open_search_window('','')
 
-def terminate(self, w = None, data = None):
+def terminate(self, w = None):
     Gtk.main_quit()
 
 def open_settings_window(self, w):
