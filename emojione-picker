@@ -73,10 +73,7 @@ class SettingsButtonHandler:
         apply_settings()
         button.get_parent_window().destroy()
     def onToggled(self,button):
-        if builder.get_object("check_paste").get_active() == True:
-            builder.get_object("check_notifications").set_sensitive(False)
-        else:
-            builder.get_object("check_notifications").set_sensitive(True)
+        pass
 
 def apply_settings():
     global settings
