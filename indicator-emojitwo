@@ -11,10 +11,9 @@ import socket
 import sys
 import time
 from collections import OrderedDict
+from gi import require_version
 from os.path import expanduser
 
-# Import GTK
-from gi import require_version
 require_version('AppIndicator3', '0.1')
 require_version('Gtk', '3.0')
 require_version('Notify', '0.7')
@@ -24,7 +23,7 @@ from gi.repository import AppIndicator3 as appindicator
 __VERSION__ = '19.10.0'
 
 # Where is the data?
-directories = [expanduser("~") + "/.local/share/emojione-picker", "/usr/local/share/emojione-picker", "/usr/share/emojione-picker", os.path.dirname(os.path.realpath(__file__))]
+directories = [expanduser("~") + "/.local/share/indicator-emojitwo", "/usr/local/share/indicator-emojitwo", "/usr/share/indicator-emojitwo", os.path.dirname(os.path.realpath(__file__))]
 for d in directories:
     if os.path.isdir(d):
         directory = d;
@@ -40,7 +39,7 @@ default_settings = settings = {
     "lowend": False,
     "recent": 20
 }
-configpath = expanduser("~") + "/.config/emojione-picker"
+configpath = expanduser("~") + "/.config/indicator-emojitwo"
 os.path.isdir(configpath) or os.mkdir(configpath)
 
 sockname = '/tmp/emojisocket.' + str(os.getuid()) + os.environ['DISPLAY']
@@ -275,7 +274,7 @@ def item_response(self, w):
 
     # Show notification
     if settings["notifications"]:
-        Notify.init("emojione-picker")
+        Notify.init("indicator-emojitwo")
         n = Notify.Notification.new(w["name"].title(), "Emoji is now in the clipboard. Paste it wherever you want!", directory + "/assets/svg/" + w["unicode"] + ".svg")
         n.show()
 
@@ -334,14 +333,14 @@ if __name__ == "__main__":
         menu = Gtk.Menu()
 
         # Create indicator
-        ind = appindicator.Indicator.new("emojione-picker", directory + "/assets/icon-default.svg", appindicator.IndicatorCategory.OTHER)
+        ind = appindicator.Indicator.new("indicator-emojitwo", directory + "/assets/icon-default.svg", appindicator.IndicatorCategory.OTHER)
         ind.set_status(appindicator.IndicatorStatus.ACTIVE)
 
         # If there is a icon present in the theme, use it!
         try:
           icons = Gtk.IconTheme.get_default()
-          icon = icons.load_icon("emojione-picker", Gtk.IconSize.MENU, 0)
-          ind.set_icon("emojione-picker")
+          icon = icons.load_icon("indicator-emojitwo", Gtk.IconSize.MENU, 0)
+          ind.set_icon("indicator-emojitwo")
         except:
           pass
 

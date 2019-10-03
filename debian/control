@@ -1,13 +1,13 @@
-Source: emojione-picker
+Source: indicator-emojitwo
 Section: misc
 Priority: optional
-Homepage: https://github.com/flexiondotorg/emojione-picker-ubuntu
+Homepage: https://github.com/ubuntu-mate/indicator-emojitwo
 Standards-Version: 4.0.0
 Build-Depends: debhelper (>= 10),
                python3,
 Maintainer: Martin Wimpress <code@flexion..org>
 
-Package: emojione-picker
+Package: indicator-emojitwo
 Depends: ${python3:Depends},
          gir1.2-appindicator3-0.1,
          gir1.2-gtk-3.0,
@@ -17,7 +17,7 @@ Depends: ${python3:Depends},
          python3-setproctitle,
          python3,
 Architecture: all
-Description: Emoji Picker for the indicator area using Emoji One
+Description: A emoji picker for the indicator area using Emoji Two
  Emoji Picker featuring several menus and a search panel.
  .
  You must paste the emojis wherever you want to use them.

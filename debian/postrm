@@ -16,13 +16,9 @@ pathfind() {
 }
 
 if `pathfind xdg-icon-resource` ; then
-
     for SIZE in 16 22 24 32 48 64 ; do
-	    xdg-icon-resource uninstall --theme ubuntu-mono-dark --size ${SIZE} emojione-picker || true
-        xdg-icon-resource uninstall --theme ubuntu-mono-light --size ${SIZE} emojione-picker || true
+        xdg-icon-resource uninstall --theme ubuntu-mono-dark --size ${SIZE} indicator-emojitwo || true
+        xdg-icon-resource uninstall --theme ubuntu-mono-light --size ${SIZE} indicator-emojitwo || true
     done
-
     xdg-icon-resource forceupdate || true
-
 fi
-
