@@ -36,7 +36,7 @@ categories = ["recent", "people", "food", "nature", "objects", "activity", "trav
 # Settings handling
 default_settings = settings = { 
     "toned": -1,
-    "notifications": True,
+    "notifications": False,
     "lowend": False,
     "recent": 20
 }
