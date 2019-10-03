@@ -1,13 +1,11 @@
 <h1 align="center">
-  <img src=".github/logo.png" alt="Indicator EmojiTwo">
+  <img src=".github/logo.png" alt="Indicator EmojiTwo" />
   <br />
   Indicator EmojiTwo
 </h1>
 
 <p align="center"><b>A very simple emoji picker.</b></p>
-
-![Indicator EmojiTwo Screenshot](.github/screenshot.png?raw=true)
-
+<div align="center"><img src=".github/screenshot.png" alt="Indicator EmojiTwo Screenshot" /></div>
 <p align="center">Made with 💝 for <img src="https://raw.githubusercontent.com/anythingcodes/slack-emoji-for-techies/gh-pages/emoji/tux.png" align="top" width="24" /></p>
 
 ## Introduction
@@ -27,7 +25,7 @@ Python 3.x.
 The indicator takes a few seconds to load, but it can take many seconds on
 older computers. In *Settings*, enable the option *Low end computer mode*
 to reduce the number of emojis and categories which should speed up loading
-time. Currently, this mode shows ~1000 emojis of the 1839 available.
+time. Currently, this mode shows ~1000 of the 1839 available emojis.
 
 ## Building, Testing, and Installation
 
