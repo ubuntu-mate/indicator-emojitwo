@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 #
 
+import gettext
 import json
 import os
 import re
@@ -21,6 +22,8 @@ from gi.repository import AppIndicator3 as appindicator
 
 __VERSION__ = '19.10.1'
 
+# i18n
+gettext.install('indicator-emojitwo', os.path.join('/','usr','share','locale'))
 # Where is the data?
 directories = [expanduser("~") + "/.local/share/indicator-emojitwo", "/usr/local/share/indicator-emojitwo", "/usr/share/indicator-emojitwo", os.path.dirname(os.path.realpath(__file__))]
 for d in directories:
@@ -493,7 +496,7 @@ if __name__ == "__main__":
     GLib.idle_add(separator.show)
 
     # Create search item
-    search_item = Gtk.MenuItem(label="Search…")
+    search_item = Gtk.MenuItem(label=_("Search…"))
     GLib.idle_add(menu.append,search_item)
     GLib.idle_add(search_item.show)
     search_item.connect("activate", open_search_window, "Search")
@@ -504,13 +507,13 @@ if __name__ == "__main__":
     GLib.idle_add(separator.show)
 
     # Create settings item
-    settings_item = Gtk.MenuItem(label="Settings…")
+    settings_item = Gtk.MenuItem(label=_("Settings…"))
     GLib.idle_add(menu.append,settings_item)
     GLib.idle_add(settings_item.show)
     settings_item.connect("activate", open_settings_window, "Settings")
 
     # Create exit item
-    exit_item = Gtk.MenuItem(label="Quit")
+    exit_item = Gtk.MenuItem(label=_("Quit"))
     GLib.idle_add(menu.append,exit_item)
     GLib.idle_add(exit_item.show)
     exit_item.connect("activate", terminate)
