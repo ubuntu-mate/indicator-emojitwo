@@ -505,11 +505,6 @@ if __name__ == "__main__":
     GLib.idle_add(search_item.show)
     search_item.connect("activate", open_search_window, "Search")
 
-    # Create another separator
-    separator = Gtk.SeparatorMenuItem()
-    GLib.idle_add(menu.append,separator)
-    GLib.idle_add(separator.show)
-
     # Create settings item
     settings_item = Gtk.MenuItem(label=_("Settings…"))
     GLib.idle_add(menu.append,settings_item)
