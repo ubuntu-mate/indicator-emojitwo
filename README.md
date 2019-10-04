@@ -55,6 +55,8 @@ You'll need the following dependencies:
 
 ## TODO
 
-  - [ ] Add keybinder for activating search
   - [ ] Refactor menu generation
   - [ ] Refactor everything to reduce/remove global variables
+  - [ ] Add autostart control via gsettings
+  - [ ] Add keybinder for activating search
+  - [ ] Add translatable strings
