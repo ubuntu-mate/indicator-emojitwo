@@ -52,3 +52,9 @@ You'll need the following dependencies:
   * `python3`
   * `python3-gi`
   * `python3-setproctitle`
+
+## TODO
+
+  - [ ] Add keybinder for activating search
+  - [ ] Refactor menu generation
+  - [ ] Refactor everything to reduce/remove global variables
