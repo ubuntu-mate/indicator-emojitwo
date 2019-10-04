@@ -27,6 +27,7 @@ __VERSION__ = '19.10.1'
 
 # i18n
 gettext.install('indicator-emojitwo', os.path.join('/','usr','share','locale'))
+
 # Where is the data?
 directories = [expanduser("~") + "/.local/share/indicator-emojitwo", "/usr/local/share/indicator-emojitwo", "/usr/share/indicator-emojitwo", os.path.dirname(os.path.realpath(__file__))]
 for d in directories:
@@ -76,7 +77,7 @@ class SettingsButtonHandler:
 def apply_settings():
     global settings
     # Get settings from dialog
-    settings = { 
+    settings = {
         "toned": builder.get_object("combo_toned").get_active()-1,
         "notifications": builder.get_object("check_notifications").get_active(),
         "lowend": builder.get_object("check_lowend").get_active(),
