@@ -41,7 +41,7 @@ install_indicatoremojitwo(){
     cp -f indicator-emojitwo.desktop $_APP_DIR
 }
 
-cd "${0%/*}"
+cd "${0%/*}" || exit
 
 if [ "$(id -u)" != "0" ]; then
 	echo "Since you are running this as plain user, the program will be installed just for the current user."
