@@ -4,6 +4,7 @@
 
 import gettext
 import json
+import logging
 import os
 import re
 import setproctitle
@@ -335,7 +336,8 @@ if __name__ == "__main__":
         icons = Gtk.IconTheme.get_default()
         icon = icons.load_icon("indicator-emojitwo", Gtk.IconSize.MENU, 0)
         ind.set_icon("indicator-emojitwo")
-    except:
+    except BaseException as e:
+        logging.info(e)
         pass
 
     # Get proper icon sizes
