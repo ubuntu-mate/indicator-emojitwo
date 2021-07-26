@@ -55,11 +55,11 @@ else
 fi
 
 if [ -f "$_INSTALL_PREFIX/bin/indicator-emojitwo" ] ; then
-	read -p "Installation detected. Press enter to uninstall or Ctrl-C to abort"
+	read -p -r "Installation detected. Press enter to uninstall or Ctrl-C to abort"
 	uninstall_indicatoremojitwo
 	echo "Uninstall completed."
 else
-	read -p "Press enter to install indicator-emojitwo or Ctrl-C to abort"
+	read -p -r "Press enter to install indicator-emojitwo or Ctrl-C to abort"
 	install_indicatoremojitwo
 	echo "Installation completed."
 fi
