@@ -32,7 +32,7 @@ gettext.install('indicator-emojitwo', os.path.join('/','usr','share','locale'))
 directories = [expanduser("~") + "/.local/share/indicator-emojitwo", "/usr/local/share/indicator-emojitwo", "/usr/share/indicator-emojitwo", os.path.dirname(os.path.realpath(__file__))]
 for d in directories:
     if os.path.isdir(d):
-        directory = d;
+        directory = d
         break
 
 # Categories definitions
@@ -352,7 +352,7 @@ if __name__ == "__main__":
         item_settings.set_property('gtk-menu-images', True)
         GLib.idle_add(category_item[category].set_image, img)
         category_menu[category] = Gtk.Menu()
-        category_item[category].set_submenu(category_menu[category]);
+        category_item[category].set_submenu(category_menu[category])
 
     # Load groups and icons definition and rearrange them in order
     with open(directory + "/assets/groups.json") as groups_file:
