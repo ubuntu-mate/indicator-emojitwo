@@ -189,12 +189,13 @@ class SearchHandler:
 # Load settings at startup
 configfile = configpath + "/settings.json"
 if os.path.isfile(configfile):
-  with open(configfile) as settings_json_file:
-      try:
-          settings = json.load(settings_json_file)
-      except:
-          save_settings()
-      
+    with open(configfile) as settings_json_file:
+        try:
+            settings = json.load(settings_json_file)
+        except ValueError:
+            logging.exception("Could not load JSON settings file")
+            save_settings()
+
 else:
     save_settings()
 
