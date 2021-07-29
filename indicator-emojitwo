@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 #
 
 import gettext
@@ -335,7 +335,7 @@ if __name__ == "__main__":
     try:
         icons = Gtk.IconTheme.get_default()
         icon = icons.load_icon("indicator-emojitwo", Gtk.IconSize.MENU, 0)
-        ind.set_icon("indicator-emojitwo")
+        ind.set_icon_full("indicator-emojitwo", "Emoji indicator icon depicting a smiley face")
     except BaseException as e:
         logging.info(e)
         pass
