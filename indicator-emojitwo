@@ -40,7 +40,7 @@ for d in directories:
 categories = ["recent", "people", "food", "nature", "objects", "activity", "travel", "flags", "symbols"]
 
 # Settings handling
-default_settings = settings = { 
+default_settings = settings = {
     "toned": -1,
     "notifications": False,
     "lowend": False,
@@ -51,10 +51,10 @@ os.path.isdir(configpath) or os.mkdir(configpath)
 
 builder = Gtk.Builder()
 
-def terminate(self, w = None):
+def terminate(self, _ = None):
     Gtk.main_quit()
 
-def open_settings_window(self, w):
+def open_settings_window(self, _):
     global settings
     builder.add_from_file(directory + "/assets/settings.glade")
     builder.connect_signals(SettingsButtonHandler())
@@ -210,7 +210,7 @@ if os.path.isfile(recentfile):
         recent = json.load(recent_json_file)
     recentindex = 0
     for k in recent.keys():
-        if(int(recent[k]["recent_order"])>recentindex):
+        if int(recent[k]["recent_order"]) > recentindex:
             recentindex = int(recent[k]["recent_order"])
     recentindex += 1
 else:
@@ -218,7 +218,7 @@ else:
     recentindex = 0
 
 # If using lowend, load lowend information
-if settings["lowend"] == True:
+if settings["lowend"]:
     lowendfile = directory + "/assets/lowend.json"
     if os.path.isfile(lowendfile):
         with open(lowendfile) as lowend_json_file:
@@ -246,7 +246,7 @@ def refresh_recent_submenu():
         recent_items[i].set_image(img)
         recent_items[i].set_label(sorted_recent[key]["name"].title())
         recent_items[i].show()
-        if ("recent_" + str(i)) in signals.keys():
+        if "recent_" + str(i) in signals.keys():
             recent_items[i].disconnect(signals["recent_" + str(i)])
         signals["recent_" + str(i)] = recent_items[i].connect("activate", item_response, sorted_recent[key])
         i = i + 1
@@ -297,7 +297,7 @@ def item_response(self, w):
             if recent[k]["recent_order"] > biggestindex:
                 biggestindex = recent[k]["recent_order"]
         nextbiggest = biggestindex
-        for i in range (1, settings["recent"]):
+        for _ in range (1, settings["recent"]):
             nextbiggest_candidate = 0
             for k in recent.keys():
                 if recent[k]["recent_order"] < nextbiggest and recent[k]["recent_order"] > nextbiggest_candidate:
@@ -337,13 +337,13 @@ if __name__ == "__main__":
         icons = Gtk.IconTheme.get_default()
         icon = icons.load_icon("indicator-emojitwo", Gtk.IconSize.MENU, 0)
         ind.set_icon_full("indicator-emojitwo", "Emoji indicator icon depicting a smiley face")
-    except BaseException as e:
-        logging.info(e)
+    except GLib.Error as loaderror:
+        logging.info(loaderror)
         pass
 
     # Get proper icon sizes
     iconsizes = Gtk.IconSize.lookup(Gtk.IconSize.MENU)
-    
+
     # Create categories items and submenus
     category_item = {}
     category_menu = {}
@@ -369,7 +369,7 @@ if __name__ == "__main__":
         sorted_data = OrderedDict(sorted_data)
 
     # Load icons into menu items
-    tones_re = re.compile('(.*) tone[ ]?\d', re.IGNORECASE)
+    tones_re = re.compile('(.*) tone[ ]?\\d', re.IGNORECASE)
     item_groups = {}
     submenu_groups = {}
     items = {}
