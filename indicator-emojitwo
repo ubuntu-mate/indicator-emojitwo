@@ -27,10 +27,14 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 __VERSION__ = '19.10.1'
 
 # i18n
-gettext.install('indicator-emojitwo', os.path.join('/','usr','share','locale'))
+gettext.install('indicator-emojitwo', os.path.join('/', 'usr', 'share', 'locale'))
 
 # Where is the data?
-directories = [expanduser("~") + "/.local/share/indicator-emojitwo", "/usr/local/share/indicator-emojitwo", "/usr/share/indicator-emojitwo", os.path.dirname(os.path.realpath(__file__))]
+directories = [expanduser("~") + "/.local/share/indicator-emojitwo",
+               "/usr/local/share/indicator-emojitwo",
+               "/usr/share/indicator-emojitwo",
+               os.path.dirname(os.path.realpath(__file__))]
+
 for d in directories:
     if os.path.isdir(d):
         directory = d
@@ -51,8 +55,10 @@ os.path.isdir(configpath) or os.mkdir(configpath)
 
 builder = Gtk.Builder()
 
-def terminate(self, _ = None):
+
+def terminate(self, _=None):
     Gtk.main_quit()
+
 
 def open_settings_window(self, _):
     global settings
@@ -62,18 +68,22 @@ def open_settings_window(self, _):
     settings_window.show_all()
     settings_window.present()
     settings_window.grab_focus()
+
     # Apply settings
     builder.get_object("combo_toned").set_active(settings["toned"]+1)
     builder.get_object("check_notifications").set_active(settings["notifications"])
     builder.get_object("check_lowend").set_active(settings["lowend"])
     builder.get_object("recent").set_value(settings["recent"])
 
+
 class SettingsButtonHandler:
     def onButtonPressed(self, button):
         apply_settings()
         button.get_parent_window().destroy()
-    def onToggled(self,button):
+
+    def onToggled(self, button):
         pass
+
 
 def apply_settings():
     global settings
@@ -89,14 +99,18 @@ def apply_settings():
     # Reload app to apply new settings - FIXME: This is ugly and slow, could be much better
     os.execv(__file__, sys.argv)
 
+
 def save_settings():
     global settings
     with open(configfile, 'w') as outfile:
         json.dump(settings, outfile)
 
+
 # Search feature
 searchbuilder = None
 search_window = None
+
+
 def open_search_window(self, w):
     global searchbuilder
     global search_window
@@ -129,8 +143,11 @@ def open_search_window(self, w):
 
     return
 
+
 searchresults = None
 selectionChanged = False
+
+
 class SearchHandler:
     def onSearchChanged(self, search):
         global searchresults
@@ -167,13 +184,16 @@ class SearchHandler:
                 emoji_image = GdkPixbuf.Pixbuf.new_from_file_at_size(directory + "/assets/svg/" + sorted_data[i]["unicode"] + ".svg", 24, 24)
                 emoji_code = sorted_data[i]["unicode"]
                 iconstore.append([emoji_image, emoji_code, emoji_name])
+
     def onIconActivated(self, icon, index):
         global searchresults
         item_response(self, searchresults[int(index.to_string())])
         icon.get_parent_window().hide()
+
     def onSelectionChanged(self, data):
         global selectionChanged
         selectionChanged = True
+
     def onKeyReleased(self, window, event):
         global selectionChanged
         if event.keyval == Gdk.KEY_Escape:
@@ -183,8 +203,10 @@ class SearchHandler:
         elif event.keyval == Gdk.KEY_Up and selectionChanged == False:
             searchbuilder.get_object("search").grab_focus()
         selectionChanged = False
+
     def onOutFocus(self, window, data):
         window.hide()
+
 
 # Load settings at startup
 configfile = configpath + "/settings.json"
@@ -226,6 +248,8 @@ if settings["lowend"]:
 
 # Refresh recent icons submenu
 sorted_recent = None
+
+
 def refresh_recent_submenu():
     global recent, recent_items, sorted_recent
 
@@ -251,6 +275,7 @@ def refresh_recent_submenu():
         signals["recent_" + str(i)] = recent_items[i].connect("activate", item_response, sorted_recent[key])
         i = i + 1
 
+
 # Click response
 def item_response(self, w):
     global recentindex, recent
@@ -269,7 +294,8 @@ def item_response(self, w):
         output = output + '\\U' + (char.zfill(8))
 
     clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-    GLib.idle_add(clipboard.set_text,output.encode('utf-8').decode('unicode-escape'), -1)
+    GLib.idle_add(clipboard.set_text, output.encode('utf-8')
+                  .decode('unicode-escape'), -1)
 
     # Show notification
     if settings["notifications"]:
@@ -288,7 +314,7 @@ def item_response(self, w):
     # Store item on recent
     w["recent_order"] = recentindex
     recentindex = recentindex + 1
-    recent.update({w["emoji_order"]:w})
+    recent.update({w["emoji_order"]: w})
 
     # Remove older items if recent is too big
     if len(recent) > settings["recent"]:
@@ -315,11 +341,13 @@ def item_response(self, w):
     # Refresh recent icons submenu
     GLib.idle_add(refresh_recent_submenu)
 
+
 def get_emoji_group(code):
     for key in groups_data:
         if code in groups_data[key]["unicodes"]:
             return key
     return False
+
 
 if __name__ == "__main__":
     executable = os.path.basename(__file__)
@@ -362,6 +390,7 @@ if __name__ == "__main__":
         groups_data = json.load(groups_file)
     with open(directory + "/assets/emoji.json") as json_file:
         json_data = json.load(json_file)
+
         def orderfunc(tup):
             key, d = tup
             return int(d["emoji_order"])
@@ -410,7 +439,7 @@ if __name__ == "__main__":
                             # This won't happen, we are not grouping toned icons
                             pass
                     else:
-                        if tones_re.match(sorted_data[key]["name"]) == None: 
+                        if tones_re.match(sorted_data[key]["name"]) == None:
                             # Not toned emoji (aka simplest case), just add to menu
                             pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(directory + "/assets/svg/" + sorted_data[key]["unicode"] + ".svg", iconsizes[1], iconsizes[2])
                             img = Gtk.Image.new_from_pixbuf(pixbuf)
@@ -427,7 +456,7 @@ if __name__ == "__main__":
                                 # Show all toned emojis in a submenu
                                 original_key = key
                                 chars = sorted_data[key]["unicode"].split("-")
-                                tone_group = chars[0] # FIXME this can be multibyte so taking the first byt isn't right
+                                tone_group = chars[0]  # FIXME this can be multibyte so taking the first byt isn't right
                                 if not tone_group in tone_groups:
                                     # Create tone submenu
                                     submenu_tones[tone_group] = Gtk.Menu()
@@ -470,7 +499,7 @@ if __name__ == "__main__":
                                     if desired_tone == int(current_tone):
                                         # Replace item with desired tone
                                         toned_key = key
-                                        chars = sorted_data[key]["unicode"].split("-") # FIXME this can be multibyte so taking the first byt isn't right
+                                        chars = sorted_data[key]["unicode"].split("-")  # FIXME this can be multibyte so taking the first byt isn't right
                                         untoned_code = chars[0]
                                         for k in sorted_data:
                                             if sorted_data[k]["unicode"] == untoned_code:
@@ -482,11 +511,11 @@ if __name__ == "__main__":
                                         # Replace action
                                         items[sorted_data[key]["unicode"]].disconnect(signals[key])
                                         signals[key] = items[sorted_data[key]["unicode"]].connect("activate", item_response, sorted_data[toned_key])
-                                
+
     # Load icons into recent category
     recent_items = []
-    for i in range (0, settings["recent"]):
-        recent_items.append( Gtk.ImageMenuItem())
+    for i in range(0, settings["recent"]):
+        recent_items.append(Gtk.ImageMenuItem())
         item_settings = recent_items[i].get_settings()
         item_settings.set_property('gtk-menu-images', True)
         category_menu["recent"].append(recent_items[i])
@@ -499,24 +528,24 @@ if __name__ == "__main__":
 
     # Create separator
     separator = Gtk.SeparatorMenuItem()
-    GLib.idle_add(menu.append,separator)
+    GLib.idle_add(menu.append, separator)
     GLib.idle_add(separator.show)
 
     # Create search item
     search_item = Gtk.MenuItem(label=_("Search…"))
-    GLib.idle_add(menu.append,search_item)
+    GLib.idle_add(menu.append, search_item)
     GLib.idle_add(search_item.show)
     search_item.connect("activate", open_search_window, "Search")
 
     # Create settings item
     settings_item = Gtk.MenuItem(label=_("Settings…"))
-    GLib.idle_add(menu.append,settings_item)
+    GLib.idle_add(menu.append, settings_item)
     GLib.idle_add(settings_item.show)
     settings_item.connect("activate", open_settings_window, "Settings")
 
     # Create exit item
     exit_item = Gtk.MenuItem(label=_("Quit"))
-    GLib.idle_add(menu.append,exit_item)
+    GLib.idle_add(menu.append, exit_item)
     GLib.idle_add(exit_item.show)
     exit_item.connect("activate", terminate)
 
