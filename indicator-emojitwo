@@ -439,7 +439,7 @@ if __name__ == "__main__":
                             # This won't happen, we are not grouping toned icons
                             pass
                     else:
-                        if tones_re.match(sorted_data[key]["name"]) == None:
+                        if tones_re.match(sorted_data[key]["name"]) is None:
                             # Not toned emoji (aka simplest case), just add to menu
                             pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(directory + "/assets/svg/" + sorted_data[key]["unicode"] + ".svg", iconsizes[1], iconsizes[2])
                             img = Gtk.Image.new_from_pixbuf(pixbuf)
