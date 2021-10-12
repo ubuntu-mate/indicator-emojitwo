@@ -41,7 +41,7 @@ install_indicatoremojitwo(){
     cp -f indicator-emojitwo.desktop $_APP_DIR
 }
 
-cd "${0%/*}"
+cd "${0%/*}" || exit
 
 if [ "$(id -u)" != "0" ]; then
 	echo "Since you are running this as plain user, the program will be installed just for the current user."
@@ -55,11 +55,11 @@ else
 fi
 
 if [ -f "$_INSTALL_PREFIX/bin/indicator-emojitwo" ] ; then
-	read -p "Installation detected. Press enter to uninstall or Ctrl-C to abort"
+	read -p -r "Installation detected. Press enter to uninstall or Ctrl-C to abort"
 	uninstall_indicatoremojitwo
 	echo "Uninstall completed."
 else
-	read -p "Press enter to install indicator-emojitwo or Ctrl-C to abort"
+	read -p -r "Press enter to install indicator-emojitwo or Ctrl-C to abort"
 	install_indicatoremojitwo
 	echo "Installation completed."
 fi

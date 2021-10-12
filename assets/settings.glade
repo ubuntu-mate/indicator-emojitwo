@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.8"/>
   <object class="GtkAdjustment" id="adjustment1">
     <property name="lower">5</property>
     <property name="upper">60</property>
     <property name="value">20</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
   <object class="GtkListStore" id="liststore1">
     <columns>
@@ -48,36 +48,36 @@
     </data>
   </object>
   <object class="GtkWindow" id="settings_window">
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="title" translatable="yes">Emojione Picker Settings</property>
-    <property name="window_position">center</property>
+    <property name="window-position">center</property>
     <property name="gravity">center</property>
     <child>
       <object class="GtkBox" id="box1">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin_left">20</property>
-        <property name="margin_right">20</property>
-        <property name="margin_top">20</property>
-        <property name="margin_bottom">20</property>
+        <property name="can-focus">False</property>
+        <property name="margin-left">20</property>
+        <property name="margin-right">20</property>
+        <property name="margin-top">20</property>
+        <property name="margin-bottom">20</property>
         <property name="orientation">vertical</property>
         <property name="spacing">20</property>
         <child>
           <object class="GtkBox" id="box2">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <property name="spacing">10</property>
             <child>
               <object class="GtkBox" id="box3">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">8</property>
                 <child>
                   <object class="GtkLabel" id="label1">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Default tone in toned icons</property>
                     <property name="xalign">0</property>
                   </object>
@@ -90,7 +90,7 @@
                 <child>
                   <object class="GtkComboBox" id="combo_toned">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="model">liststore1</property>
                     <property name="active">0</property>
                     <child>
@@ -116,12 +116,12 @@
             <child>
               <object class="GtkBox" id="box4">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel" id="label2">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Number of recent items shown</property>
                     <property name="xalign">0</property>
                   </object>
@@ -134,13 +134,13 @@
                 <child>
                   <object class="GtkSpinButton" id="recent">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="margin_top">10</property>
-                    <property name="max_length">2</property>
-                    <property name="xalign">0.0099999997764825821</property>
-                    <property name="caps_lock_warning">False</property>
-                    <property name="progress_pulse_step">1</property>
-                    <property name="input_purpose">number</property>
+                    <property name="can-focus">True</property>
+                    <property name="margin-top">10</property>
+                    <property name="max-length">2</property>
+                    <property name="xalign">0.009999999776482582</property>
+                    <property name="caps-lock-warning">False</property>
+                    <property name="progress-pulse-step">1</property>
+                    <property name="input-purpose">number</property>
                     <property name="adjustment">adjustment1</property>
                     <property name="numeric">True</property>
                     <property name="value">20</property>
@@ -159,14 +159,29 @@
               </packing>
             </child>
             <child>
+              <object class="GtkCheckButton" id="check_autostart">
+                <property name="label" translatable="yes">Run on startup</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">False</property>
+                <property name="xalign">0</property>
+                <property name="draw-indicator">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkCheckButton" id="check_notifications">
                 <property name="label" translatable="yes">Show notifications</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">False</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">False</property>
                 <property name="xalign">0</property>
                 <property name="active">True</property>
-                <property name="draw_indicator">True</property>
+                <property name="draw-indicator">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -178,12 +193,12 @@
               <object class="GtkCheckButton" id="check_lowend">
                 <property name="label" translatable="yes">Low end computer mode</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">False</property>
-                <property name="tooltip_text" translatable="yes">A smaller subset of emojis will be shown.
+                <property name="can-focus">True</property>
+                <property name="receives-default">False</property>
+                <property name="tooltip-text" translatable="yes">A smaller subset of emojis will be shown.
 Untoned emojis will be enforced.</property>
                 <property name="xalign">0</property>
-                <property name="draw_indicator">True</property>
+                <property name="draw-indicator">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -202,8 +217,8 @@ Untoned emojis will be enforced.</property>
           <object class="GtkButton" id="button1">
             <property name="label" translatable="yes">Save</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
             <property name="valign">end</property>
             <signal name="clicked" handler="onButtonPressed" swapped="no"/>
           </object>
